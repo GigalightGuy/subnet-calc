@@ -36,10 +36,12 @@ function process_addr(addrStr) {
     const totalHosts = 1 << hostBits >>> 0;
     const availableHosts = totalHosts - 2;
     
-    const netIdAddr     = (ip &  (0xffffffff << hostBits)) >>> 0;
-    const broadcastAddr = (ip | ~(0xffffffff << hostBits)) >>> 0;
+    const subnetMask    = (0xffffffff << hostBits) >>> 0;
+    const netIdAddr     = (ip &  (subnetMask)) >>> 0;
+    const broadcastAddr = (ip | ~(subnetMask)) >>> 0;
 
     const res = {
+        subnet_mask: iptostr(subnetMask),
         netid_addr: iptostr(netIdAddr),
         broadcast_addr: iptostr(broadcastAddr),
         total_hosts: totalHosts,
@@ -52,6 +54,7 @@ function process_addr_from_input() {
     const input = document.getElementById("addr_input").value;
     try {
         const r = process_addr(input);
+        document.getElementById("subnet_mask").value = r.subnet_mask;
         document.getElementById("netid_addr").value = r.netid_addr;
         document.getElementById("broadcast_addr").value = r.broadcast_addr;
         document.getElementById("total_hosts").value = r.total_hosts;
@@ -59,6 +62,7 @@ function process_addr_from_input() {
 
         document.getElementById("error_message").hidden = true;
     } catch (e) {
+        document.getElementById("subnet_mask").value = "";
         document.getElementById("netid_addr").value = "";
         document.getElementById("broadcast_addr").value = "";
         document.getElementById("total_hosts").value = "";
