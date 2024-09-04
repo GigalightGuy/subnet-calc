@@ -1,0 +1,9 @@
+* {
+    color: #E2E2B6;
+    background-color: #021526;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}

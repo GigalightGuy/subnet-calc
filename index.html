@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Subnet Calculator</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css"></style>
+</head>
+<body style="padding-left: 5px">
+    <h1>Subnet Calculator</h1>
+
+    <div style="padding: 10px">
+        <p id="error_message" hidden style="color: red"></p>
+        <label for="addr_input">Input address</label>
+        <input id="addr_input" placeholder="255.255.255.0/24" autofocus oninput="process_addr_from_input()"><br></br>
+        <label for="netid_addr">Network ID address</label>
+        <input id="netid_addr" readonly><br></br>
+        <label for="broadcast_addr">Broadcast address</label>
+        <input id="broadcast_addr" readonly> <br></br>
+        <label for="total_hosts">Total hosts</label>
+        <input id="total_hosts" readonly><br></br>
+        <label for="available_hosts">Available hosts</label>
+        <input id="available_hosts" readonly><br></br>
+    </div>
+</body>
+</html>
